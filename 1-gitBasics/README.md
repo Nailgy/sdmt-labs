@@ -37,4 +37,4 @@ node main.js
 node main.js <path-to-your-file>
 ```
 
-[Reverted commit] (https://github.com/Nailgy/sdmt-labs/commit/c543efe0aeafe6795c6bcdbe0643c9e6a3d0dfa8)
+[Reverted commit](https://github.com/Nailgy/sdmt-labs/commit/c543efe0aeafe6795c6bcdbe0643c9e6a3d0dfa8)
