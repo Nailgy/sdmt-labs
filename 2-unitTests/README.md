@@ -1,4 +1,4 @@
-# Lab 2
+# Lab 2 - Realisations of list data structure
 
 ## Variant
 
