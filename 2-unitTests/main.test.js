@@ -279,3 +279,214 @@ describe("deleteAll", () => {
     expect(list.get(2)).toBe("c");
   });
 });
+
+describe("get()", () => {
+  let list;
+  beforeEach(() => {
+    list = new SinglyLinkedCircList();
+    list.append("a");
+    list.append("b");
+    list.append("c");
+  });
+
+  test("Returning the element by it's index", () => {
+    expect(list.get(0)).toBe("a");
+    expect(list.get(1)).toBe("b");
+    expect(list.get(2)).toBe("c");
+  });
+
+  test("Error on negative index", () => {
+    const checkNegIndex = () => list.get(-1);
+
+    expect(checkNegIndex).toThrow("Error. Index out of range");
+  });
+
+  test("Error on index that is >= length of the list", () => {
+    const checkBigIndex = () => list.get(3);
+
+    expect(checkBigIndex).toThrow("Error. Index out of range");
+  });
+});
+
+describe("clone()", () => {
+  test("Returning a new list which has the same elements", () => {
+    const list = new SinglyLinkedCircList();
+    list.append("a");
+    list.append("b");
+    list.append("c");
+    const clonedList = list.clone();
+
+    expect(clonedList.length()).toEqual(3);
+    expect(clonedList.get(0)).toEqual("a");
+    expect(clonedList.get(1)).toEqual("b");
+    expect(clonedList.get(2)).toEqual("c");
+  });
+
+  test("Cloned list must not affect original one", () => {
+    const list = new SinglyLinkedCircList();
+    list.append("a");
+    list.append("b");
+    list.append("c");
+    const clonedList = list.clone();
+    clonedList.delete(0);
+
+    expect(clonedList.length()).toEqual(2);
+    expect(list.length()).toEqual(3);
+  });
+
+  test("Returning an empty list if cloning from empty", () => {
+    const list = new SinglyLinkedCircList();
+    const clonedList = list.clone();
+
+    expect(clonedList.length()).toEqual(0);
+  });
+});
+
+describe("reverse()", () => {
+  let list;
+  beforeEach(() => {
+    list = new SinglyLinkedCircList();
+  });
+
+  test("Returning reversed list", () => {
+    list.append("a");
+    list.append("b");
+    list.append("c");
+    list.append("d");
+    list.reverse();
+
+    expect(list.get(0)).toEqual("d");
+    expect(list.get(1)).toEqual("c");
+    expect(list.get(2)).toEqual("b");
+    expect(list.get(3)).toEqual("a");
+  });
+
+  test("Returning the same list if there is only 1 node", () => {
+    list.append("a");
+    list.reverse();
+
+    expect(list.get(0)).toEqual("a");
+  });
+
+  test("Error on reversing the empty list", () => {
+    const checkEmpty = () => list.reverse();
+
+    expect(checkEmpty).toThrow("Error. The list is empty");
+  });
+});
+
+describe("findFirst()", () => {
+  let list;
+  beforeEach(() => {
+    list = new SinglyLinkedCircList();
+  });
+
+  test("Returning index of the first occurrence of an element", () => {
+    list.append("a");
+    list.append("b");
+    list.append("c");
+    list.append("a");
+    list.append("d");
+
+    expect(list.findFirst("a")).toEqual(0);
+    expect(list.findFirst("b")).toEqual(1);
+    expect(list.findFirst("c")).toEqual(2);
+    expect(list.findFirst("d")).toEqual(4);
+  });
+
+  test("Returning -1 if the element has been not found", () => {
+    list.append("a");
+    list.append("b");
+    list.append("c");
+
+    expect(list.findFirst("x")).toEqual(-1);
+  });
+
+  test("Returning -1 if the list is empty", () => {
+    expect(list.findFirst("a")).toBe(-1);
+  });
+});
+
+describe("findLast()", () => {
+  let list;
+  beforeEach(() => {
+    list = new SinglyLinkedCircList();
+  });
+
+  test("must return the index of the last occurrence of the element", () => {
+    list.append("a");
+    list.append("b");
+    list.append("c");
+    list.append("a");
+    list.append("d");
+
+    expect(list.findLast("a")).toEqual(3);
+    expect(list.findLast("b")).toEqual(1);
+    expect(list.findLast("c")).toEqual(2);
+    expect(list.findLast("d")).toEqual(4);
+  });
+
+  test("Returning -1 if the element has been not found", () => {
+    list.append("a");
+    list.append("b");
+    list.append("c");
+
+    expect(list.findLast("x")).toEqual(-1);
+  });
+
+  test("Returning -1 if the list is empty", () => {
+    expect(list.findLast("a")).toBe(-1);
+  });
+});
+
+describe("clear()", () => {
+  let list;
+  beforeEach(() => {
+    list = new SinglyLinkedCircList();
+  });
+
+  test("Removing all elements from list", () => {
+    list.append("a");
+    list.append("b");
+    list.append("c");
+    list.clear();
+
+    expect(list.length()).toBe(0);
+  });
+
+  test("Removing all elements from an empty list", () => {
+    list.clear();
+
+    expect(list.length()).toBe(0);
+  });
+});
+
+describe("extend()", () => {
+  test("Adding all elements of the given list to the end of first list", () => {
+    const list1 = new SinglyLinkedCircList();
+    list1.append("a");
+    list1.append("b");
+    const list2 = new SinglyLinkedCircList();
+    list2.append("c");
+    list2.append("d");
+    list1.extend(list2);
+
+    expect(list1.get(0)).toEqual("a");
+    expect(list1.get(1)).toEqual("b");
+    expect(list1.get(2)).toEqual("c");
+    expect(list1.get(3)).toEqual("d");
+    expect(list1.length()).toEqual(4);
+  });
+
+  test("No effect if given list is empty", () => {
+    const list1 = new SinglyLinkedCircList();
+    list1.append("a");
+    list1.append("b");
+    const list2 = new SinglyLinkedCircList();
+    list1.extend(list2);
+
+    expect(list1.length()).toEqual(2);
+    expect(list1.get(0)).toEqual("a");
+    expect(list1.get(1)).toEqual("b");
+  });
+});
