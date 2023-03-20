@@ -43,15 +43,15 @@ class ListOnArrays {
     if (index < 0 || index > this.list.length - 1) {
       throw new Error("Error. Index out of range");
     }
-    const deletedItem = this.get(index);
-    this.splice(index, 1);
+    const deletedItem = this.list[index];
+    this.list.splice(index, 1);
     return deletedItem;
   }
 
   deleteAll(element) {
     for (let i = 0; i < this.list.length; i++) {
       if (this.list[i] === element) {
-        this.splice(i, 1);
+        this.list.splice(i, 1);
         i--;
       }
     }
@@ -74,7 +74,11 @@ class ListOnArrays {
   }
 
   reverse() {
-    this.list.reverse();
+    if (this.list.length > 0) {
+      this.list.reverse();
+    } else {
+      throw new Error("Error. The list is empty");
+    }
   }
 
   findFirst(element) {
@@ -103,7 +107,7 @@ class ListOnArrays {
   }
 
   extend(list) {
-    for (let i = 0; i < this.list.length; i++) {
+    for (let i = 0; i < list.length(); i++) {
       this.list.push(list.get(i));
     }
   }

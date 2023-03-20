@@ -172,7 +172,7 @@ describe("insert()", () => {
   });
 });
 
-describe("delete())", () => {
+describe("delete()", () => {
   let list;
   beforeEach(() => {
     list = new ListOnArrays();
@@ -181,7 +181,7 @@ describe("delete())", () => {
     list.append("c");
   });
 
-  test("Return an empty list on deleting every node", () => {
+  test("Length must be 0 after deleting every node", () => {
     list.delete(0);
     list.delete(0);
     list.delete(0);
@@ -231,7 +231,7 @@ describe("delete())", () => {
   });
 });
 
-describe("deleteAll", () => {
+describe("deleteAll()", () => {
   let list;
   beforeEach(() => {
     list = new ListOnArrays();
