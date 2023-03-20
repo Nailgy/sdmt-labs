@@ -1,11 +1,11 @@
 "use strict";
 
-const { SinglyLinkedCircList } = require("./main.js");
+const { ListOnArrays } = require("./main.js");
 
 describe("length()", () => {
   let list;
   beforeEach(() => {
-    list = new SinglyLinkedCircList();
+    list = new ListOnArrays();
   });
 
   test("Length of empty list is 0", () => {
@@ -31,7 +31,7 @@ describe("length()", () => {
 describe("append()", () => {
   let list;
   beforeEach(() => {
-    list = new SinglyLinkedCircList();
+    list = new ListOnArrays();
   });
 
   test("Appending a new node to an empty list", () => {
@@ -87,7 +87,7 @@ describe("append()", () => {
 describe("insert()", () => {
   let list;
   beforeEach(() => {
-    list = new SinglyLinkedCircList();
+    list = new ListOnArrays();
   });
 
   test("Inserting element in the empty list", () => {
@@ -175,7 +175,7 @@ describe("insert()", () => {
 describe("delete())", () => {
   let list;
   beforeEach(() => {
-    list = new SinglyLinkedCircList();
+    list = new ListOnArrays();
     list.append("a");
     list.append("b");
     list.append("c");
@@ -234,7 +234,7 @@ describe("delete())", () => {
 describe("deleteAll", () => {
   let list;
   beforeEach(() => {
-    list = new SinglyLinkedCircList();
+    list = new ListOnArrays();
   });
 
   test("Deleting all the nodes with matching element", () => {
@@ -283,7 +283,7 @@ describe("deleteAll", () => {
 describe("get()", () => {
   let list;
   beforeEach(() => {
-    list = new SinglyLinkedCircList();
+    list = new ListOnArrays();
     list.append("a");
     list.append("b");
     list.append("c");
@@ -310,7 +310,7 @@ describe("get()", () => {
 
 describe("clone()", () => {
   test("Returning a new list which has the same elements", () => {
-    const list = new SinglyLinkedCircList();
+    const list = new ListOnArrays();
     list.append("a");
     list.append("b");
     list.append("c");
@@ -323,7 +323,7 @@ describe("clone()", () => {
   });
 
   test("Cloned list must not affect original one", () => {
-    const list = new SinglyLinkedCircList();
+    const list = new ListOnArrays();
     list.append("a");
     list.append("b");
     list.append("c");
@@ -335,7 +335,7 @@ describe("clone()", () => {
   });
 
   test("Returning an empty list if cloning from empty", () => {
-    const list = new SinglyLinkedCircList();
+    const list = new ListOnArrays();
     const clonedList = list.clone();
 
     expect(clonedList.length()).toEqual(0);
@@ -345,7 +345,7 @@ describe("clone()", () => {
 describe("reverse()", () => {
   let list;
   beforeEach(() => {
-    list = new SinglyLinkedCircList();
+    list = new ListOnArrays();
   });
 
   test("Returning reversed list", () => {
@@ -378,7 +378,7 @@ describe("reverse()", () => {
 describe("findFirst()", () => {
   let list;
   beforeEach(() => {
-    list = new SinglyLinkedCircList();
+    list = new ListOnArrays();
   });
 
   test("Returning index of the first occurrence of an element", () => {
@@ -410,7 +410,7 @@ describe("findFirst()", () => {
 describe("findLast()", () => {
   let list;
   beforeEach(() => {
-    list = new SinglyLinkedCircList();
+    list = new ListOnArrays();
   });
 
   test("must return the index of the last occurrence of the element", () => {
@@ -442,7 +442,7 @@ describe("findLast()", () => {
 describe("clear()", () => {
   let list;
   beforeEach(() => {
-    list = new SinglyLinkedCircList();
+    list = new ListOnArrays();
   });
 
   test("Removing all elements from list", () => {
@@ -463,10 +463,10 @@ describe("clear()", () => {
 
 describe("extend()", () => {
   test("Adding all elements of the given list to the end of first list", () => {
-    const list1 = new SinglyLinkedCircList();
+    const list1 = new ListOnArrays();
     list1.append("a");
     list1.append("b");
-    const list2 = new SinglyLinkedCircList();
+    const list2 = new ListOnArrays();
     list2.append("c");
     list2.append("d");
     list1.extend(list2);
@@ -479,10 +479,10 @@ describe("extend()", () => {
   });
 
   test("No effect if given list is empty", () => {
-    const list1 = new SinglyLinkedCircList();
+    const list1 = new ListOnArrays();
     list1.append("a");
     list1.append("b");
-    const list2 = new SinglyLinkedCircList();
+    const list2 = new ListOnArrays();
     list1.extend(list2);
 
     expect(list1.length()).toEqual(2);
